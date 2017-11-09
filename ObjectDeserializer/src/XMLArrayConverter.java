@@ -12,7 +12,7 @@ public class XMLArrayConverter extends XMLObjectConverter{
 	
 	@Override
 	public Object conversion() {
-		Object base = Array.newInstance(getType(), length);
+		Object base = Array.newInstance(getType().getComponentType(), length);
 		setMembers(base);
 		return base;
 	}
