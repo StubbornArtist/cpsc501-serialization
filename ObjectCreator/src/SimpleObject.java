@@ -14,5 +14,13 @@ public class SimpleObject {
 		num = i;
 		letter = c;
 	}
+	
+	public void setNum(int num) {
+		this.num = num;
+	}
+	
+	public void setLetter(char letter) {
+		this.letter = letter;
+	}
 
 }
