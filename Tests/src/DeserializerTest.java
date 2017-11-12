@@ -8,12 +8,12 @@ import org.jdom2.input.SAXBuilder;
 public class DeserializerTest {
 	
 	private static Deserializer deserializer;
-	private static SAXBuilder builder;
 	
 	private Object deserialize(String root) throws Exception {
 		String fullRoot = "<serialized>\r\n"
 						+ root
 						+"</serialized>";
+		SAXBuilder builder = new SAXBuilder();
 		try {
 			Document doc = builder.build(new StringReader(fullRoot));
 			return deserializer.deserialize(doc);
@@ -26,7 +26,6 @@ public class DeserializerTest {
 	@BeforeClass
 	public static void setUp() {
 		deserializer = new Deserializer();
-		builder = new SAXBuilder();
 	}
 	
 	@Test
