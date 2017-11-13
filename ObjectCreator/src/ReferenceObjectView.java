@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ArrayObjectView implements ObjectView{
+public class ReferenceObjectView implements ObjectView{
 
 	private IController controller;
 	private Scanner input;
 	
-	public ArrayObjectView() {
+	
+	public ReferenceObjectView() {
 		input = new Scanner(System.in);
 	}
 	
@@ -15,44 +16,46 @@ public class ArrayObjectView implements ObjectView{
 		System.out.println("int length : ");
 	}
 	
-	public void requestCharMember(int index) {
-		System.out.println("char " + index + " : " );	
+	public void requestSimpleObj() {
+		System.out.println("SimpleObject simpleObject: ");
 	}
 	
-	public void requestSimpleObjMember(int index) {
-		System.out.println("SimpleObject " + index + " : ");
-	}
-	
-	public void requestSimpleObjInt() {
+	public void requestSimpleObjNum() {
 		System.out.println("int num : ");
 	}
 	
-	public void requestSimpleObjectChar() {
+	public void requestSimpleObjLetter() {
 		System.out.println("char letter : ");
+	}
+	
+	
+	public void requestMember(int index) {
+		System.out.println( index + " : SimpleObject" );
 	}
 	
 	@Override
 	public String getName() {
-		return "ArrayObject";
+		return "ReferenceObject";
 	}
 
 	@Override
 	public void run() {
+		
+		List<String> args = new ArrayList<String>();
+		
 		requestLength();
 		Integer len = new Integer(input.nextLine());
-		List<String> args = new ArrayList<String>();
-		args.add(len.toString());
+		requestSimpleObj();
+		requestSimpleObjNum();
+		args.add(input.nextLine());
+		requestSimpleObjLetter();
+		args.add(input.nextLine());
 		
 		for(int i = 0; i < len; i++) {
-			requestCharMember(i);
+			requestMember(i);
+			requestSimpleObjNum();
 			args.add(input.nextLine());
-		}
-		
-		for(int i = 0; i < len; i++) {
-			requestSimpleObjMember(i);
-			requestSimpleObjInt();
-			args.add(input.nextLine());
-			requestSimpleObjectChar();
+			requestSimpleObjLetter();
 			args.add(input.nextLine());
 		}
 		

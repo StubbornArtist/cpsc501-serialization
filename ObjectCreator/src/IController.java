@@ -1,6 +1,7 @@
+import java.util.List;
 
 public interface IController {
 	
-	public void onTextInput(String [] input);
+	public void onTextInput(List<String> input);
 
 }

@@ -10,9 +10,13 @@ public class Main {
 		ArrayObjectView view2 = new ArrayObjectView();
 		ArrayObjectController controller2 = new ArrayObjectController(view2);
 		
+		ReferenceObjectView view3 = new ReferenceObjectView();
+		ReferenceObjectController controller3 = new ReferenceObjectController(view3);
+		
 		ObjectCreatorView view = new ObjectCreatorView();
 		view.addObjectView(view1);
 		view.addObjectView(view2);
+		view.addObjectView(view3);
 		
 		view.run();
 	}

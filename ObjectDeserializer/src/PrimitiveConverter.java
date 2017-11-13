@@ -5,22 +5,7 @@ public class PrimitiveConverter {
 	public static Object getFromString(String primitive) {
 		
 		try {
-			return Long.valueOf(primitive);
-		}
-		catch(NumberFormatException e) {}
-		
-		try {
-			return Float.valueOf(primitive);
-		}
-		catch(NumberFormatException e) {}
-		
-		try {
-			return Double.valueOf(primitive);
-		}
-		catch(NumberFormatException e) {}
-		
-		try {
-			return Integer.valueOf(primitive);
+			return Byte.valueOf(primitive);
 		}
 		catch(NumberFormatException e) {}
 		
@@ -30,10 +15,25 @@ public class PrimitiveConverter {
 		catch(NumberFormatException e) {}
 		
 		try {
-			return Byte.valueOf(primitive);
+			return Integer.valueOf(primitive);
 		}
 		catch(NumberFormatException e) {}
-									
+		
+		try {
+			return Double.valueOf(primitive);
+		}
+		catch(NumberFormatException e) {}
+		
+		try {
+			return Float.valueOf(primitive);
+		}
+		catch(NumberFormatException e) {}
+		
+		try {
+			return Long.valueOf(primitive);
+		}
+		catch(NumberFormatException e) {}
+										
 		if(primitive.length() == 1) {
 			return primitive.charAt(0);
 		}

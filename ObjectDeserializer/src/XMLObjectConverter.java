@@ -1,4 +1,5 @@
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 import org.jdom2.Element;
 
@@ -44,9 +45,16 @@ public class XMLObjectConverter extends XMLConverter{
 				String name = field.getAttributeValue("name");
 				Element value = field.getChildren().get(0);
 				
-				Field f = obj.getClass().getDeclaredField(name);	
-				f.set(obj, XMLConverter.convert(value, getRoot()));
-			}catch(Exception e){}
+				Field f = obj.getClass().getDeclaredField(name);
+				int mods = f.getModifiers();
+				
+				if(!Modifier.isFinal(mods)) {
+					f.setAccessible(true);
+					f.set(obj, XMLConverter.convert(value, getRoot()));
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 	}
 

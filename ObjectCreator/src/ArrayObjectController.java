@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.List;
 
 public class ArrayObjectController implements IController {
 	
@@ -11,18 +12,27 @@ public class ArrayObjectController implements IController {
 	}
 
 	@Override
-	public void onTextInput(String[] input) {
+	public void onTextInput(List<String> input) {
 		
-		int length = new Integer(input[0]);
+		int length = new Integer(input.remove(0));
 		model = new ArrayObject(length);
 		
 		for(int i = 0; i < length; i++) {
-			model.setAt(i, input[i + 1].charAt(0));
+			model.setAt(i, input.remove(0).charAt(0));
+		}
+		
+		for(int i = 0; i < length; i++) {
+			SimpleObject simpObj = new SimpleObject();
+			simpObj.setNum(new Integer(input.remove(0)));
+			simpObj.setLetter(input.remove(0).charAt(0));
+			
+			model.setAt(i, simpObj);
 		}
 		
 		try {
 			ObjectSender.getInstance().send(model);
-		}catch(IOException e) {}
+		}
+		catch(IOException e) {}
 	}
 
 }

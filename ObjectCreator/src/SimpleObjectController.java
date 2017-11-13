@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.List;
 
 public class SimpleObjectController implements IController{
 
@@ -12,13 +13,16 @@ public class SimpleObjectController implements IController{
 	}
 	
 	@Override
-	public void onTextInput(String [] input) {
-		model.setNum(new Integer(input[0]));
-		model.setLetter(input[1].charAt(0));
+	public void onTextInput(List<String>input) {
+		model.setNum(new Integer(input.remove(0)));
+		model.setLetter(input.remove(0).charAt(0));
 		
 		try {
 			ObjectSender.getInstance().send(model);
-		}catch(IOException e) {}
+		}catch(IOException e) {
+			
+			e.getStackTrace();
+		}
 		
 	}
 

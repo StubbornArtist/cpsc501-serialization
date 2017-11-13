@@ -4,6 +4,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import org.jdom2.Document;
+import org.jdom2.output.XMLOutputter;
 
 public class ObjectSender {
 	
@@ -28,9 +29,13 @@ public class ObjectSender {
 	
 	public void send(Object obj) throws IOException {
 		Document doc = serializer.serialize(obj);
+		XMLOutputter xmlOut = new XMLOutputter();
+		String xml = xmlOut.outputString(doc);
 		
 		DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-		out.writeBytes(doc.getRootElement().getText());
+		out.writeUTF(xml);
+		
+		socket.close();
 	}
 	
 	

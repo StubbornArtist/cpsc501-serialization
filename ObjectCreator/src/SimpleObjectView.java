@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SimpleObjectView implements ObjectView{
@@ -16,18 +18,6 @@ public class SimpleObjectView implements ObjectView{
 	public void requestLetter() {
 		System.out.println("char letter : ");
 	}
-
-	
-	public void recieveInput() {
-		String [] args = new String[2];
-		requestNum();
-		args[0] = input.nextLine();
-		requestLetter();
-		args[1] = input.nextLine();
-		
-		controller.onTextInput(args);
-	}
-	
 	
 	@Override
 	public String getName() {
@@ -36,7 +26,14 @@ public class SimpleObjectView implements ObjectView{
 
 	@Override
 	public void run() {
-		recieveInput();
+		
+		List<String> args = new ArrayList<String>();
+		requestNum();
+		args.add(input.nextLine());
+		requestLetter();
+		args.add(input.nextLine());
+		
+		controller.onTextInput(args);
 	}
 
 	@Override
