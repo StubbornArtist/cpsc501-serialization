@@ -2,16 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReferenceObjectView implements ObjectView{
-
-	private IController controller;
-	private Scanner input;
-	
-	
-	public ReferenceObjectView() {
-		input = new Scanner(System.in);
-	}
-	
+public class ReferenceObjectView extends ObjectView{
+		
 	public void requestLength() {
 		System.out.println("int length : ");
 	}
@@ -44,27 +36,22 @@ public class ReferenceObjectView implements ObjectView{
 		List<String> args = new ArrayList<String>();
 		
 		requestLength();
-		Integer len = new Integer(input.nextLine());
+		Integer len = new Integer(getLine());
 		requestSimpleObj();
 		requestSimpleObjNum();
-		args.add(input.nextLine());
+		args.add(getLine());
 		requestSimpleObjLetter();
-		args.add(input.nextLine());
+		args.add(getLine());
 		
 		for(int i = 0; i < len; i++) {
 			requestMember(i);
 			requestSimpleObjNum();
-			args.add(input.nextLine());
+			args.add(getLine());
 			requestSimpleObjLetter();
-			args.add(input.nextLine());
+			args.add(getLine());
 		}
 		
-		controller.onTextInput(args);
-	}
-
-	@Override
-	public void addListener(IController controller) {
-		this.controller = controller;
+		notifyController(args);
 	}
 
 }

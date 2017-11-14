@@ -2,15 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SimpleObjectView implements ObjectView{
-
-	private IController controller;
-	private Scanner input; 
-	
-	public SimpleObjectView() {
-		input = new Scanner(System.in);
-	}
-	
+public class SimpleObjectView extends ObjectView{
+		
 	public void requestNum() {
 		System.out.println("int num : ");
 	}
@@ -29,16 +22,11 @@ public class SimpleObjectView implements ObjectView{
 		
 		List<String> args = new ArrayList<String>();
 		requestNum();
-		args.add(input.nextLine());
+		args.add(getLine());
 		requestLetter();
-		args.add(input.nextLine());
+		args.add(getLine());
 		
-		controller.onTextInput(args);
-	}
-
-	@Override
-	public void addListener(IController controller) {
-		this.controller = controller;
+		notifyController(args);
 	}
 
 }

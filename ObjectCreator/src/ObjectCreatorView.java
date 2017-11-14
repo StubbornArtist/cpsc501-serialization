@@ -2,13 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ObjectCreatorView {
-	
-	private Scanner input; 
+public class ObjectCreatorView extends View{
+	 
 	private List<ObjectView> objectViews;
 	
 	public ObjectCreatorView() {
-		input = new Scanner(System.in);
 		objectViews = new ArrayList<ObjectView>();
 	}
 	
@@ -25,10 +23,10 @@ public class ObjectCreatorView {
 		objectViews.add(objView);
 	}
 	
-	
+	@Override
 	public void run() {
 		requestObject();
-		Integer view = new Integer(input.nextLine());
+		Integer view = new Integer(getLine());
 		objectViews.get(view - 1).run();
 	}
 }

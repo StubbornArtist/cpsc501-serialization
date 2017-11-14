@@ -1,10 +1,5 @@
 
-public interface ObjectView {
+public abstract class ObjectView extends View{
 	
-	public String getName();
-	
-	public void run();
-	
-	public void addListener(IController controller);
-
+	public abstract String getName();
 }
