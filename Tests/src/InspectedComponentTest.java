@@ -18,10 +18,10 @@ public class InspectedComponentTest {
 	public void testPrimitiveArray() {
 		InspectedComponent test = InspectedComponent.create(int[].class, new int[] {0,1});
 		assertEquals(test.inspect(), "Class : [I\n" 
-									+ "Members : \n" 
-									+ "\n\nValue : 1\n\n"
-									+ "Value : 0\n\n"
-									+"Length : 2");
+									+ "Members : " 
+									+ "\n\nValue : 0"
+									+ "\n\nValue : 1"
+									+ "\n\n\nLength : 2");
 		
 	}
 	
@@ -38,18 +38,18 @@ public class InspectedComponentTest {
 			new EmptyClass(),
 			new EmptyClass()
 		});
-		
-		assertEquals(test.inspect(), "Class : [LEmptyClass\n"
-									+ "Members : \n" 
+		assertEquals(test.inspect(), "Class : [LEmptyClass;\n"
+									+ "Members : " 
 									+ "\n\nClass : EmptyClass"
-									+ "\n\nClass : EmptyClass");
+									+ "\n\nClass : EmptyClass"
+									+ "\n\n\nLength : 2");
 		
 	}
 	
 	@Test
 	public void testEmptyClass() {
 		InspectedComponent test = InspectedComponent.create(EmptyClass.class, new EmptyClass());
-		assertEquals(test.inspect(), "Class : EmptyClass\n");
+		assertEquals(test.inspect(), "Class : EmptyClass");
 		
 	}
 	
@@ -57,9 +57,9 @@ public class InspectedComponentTest {
 	public void testPrimitiveFieldClass() {
 		InspectedComponent test = InspectedComponent.create(OnePrimitiveClass.class, new OnePrimitiveClass());
 		assertEquals(test.inspect(), "Class : OnePrimitiveClass\n"
-									+ "Members : \n"
+									+ "Members : "
 									+ "\n\nName : prim"
-									+"\nValue : 1");
+									+"\nValue : 1\n\n");
 		
 		
 	}
@@ -68,9 +68,9 @@ public class InspectedComponentTest {
 	public void testNullFieldClass() {
 		InspectedComponent test = InspectedComponent.create(NullFieldClass.class, new NullFieldClass());
 		assertEquals(test.inspect(), "Class : NullFieldClass\n"
-									+ "Members : \n"
+									+ "Members : "
 									+ "\n\nName : obj"
-									+ "\nValue : null");
+									+ "\nValue : null\n\n");
 		
 	}
 	
@@ -78,8 +78,9 @@ public class InspectedComponentTest {
 	public void testObjectFieldClass() {
 		InspectedComponent test = InspectedComponent.create(OneClassFieldClass.class, new OneClassFieldClass());
 		assertEquals(test.inspect(), "Class : OneClassFieldClass\n"
-									+ "Members : \n"
-									+ "Class : EmptyClass\n");
+									+ "Members : "
+									+ "\n\nName : obj"
+									+ "\nClass : EmptyClass\n\n");
 		
 	}
 
