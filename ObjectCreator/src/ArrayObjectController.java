@@ -1,19 +1,15 @@
-import java.io.IOException;
 import java.util.List;
 
-public class ArrayObjectController implements IController {
+public class ArrayObjectController extends Controller {
 	
-	private ObjectView view;
 	private PrimitiveArrayObject model;
 	
-	public ArrayObjectController(ObjectView view) {
-		this.view = view;
-		this.view.addListener(this);
+	public ArrayObjectController(View view) {
+		super(view);
 	}
 
 	@Override
 	public void onTextInput(List<String> input) {
-		
 		int length = new Integer(input.remove(0));
 		model = new PrimitiveArrayObject(length);
 		
@@ -23,7 +19,9 @@ public class ArrayObjectController implements IController {
 		try {
 			ObjectSender.getInstance().send(model);
 		}
-		catch(IOException e) {}
+		catch(Exception e) {
+			throw new RuntimeException();
+		}
 	}
 
 }

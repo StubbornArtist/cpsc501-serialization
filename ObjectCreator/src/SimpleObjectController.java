@@ -1,14 +1,11 @@
-import java.io.IOException;
 import java.util.List;
 
-public class SimpleObjectController implements IController{
+public class SimpleObjectController extends Controller{
 
-	private SimpleObjectView view;
 	private SimpleObject model;
 	
-	public SimpleObjectController(SimpleObjectView view) {
-		this.view = view;
-		this.view.addListener(this);
+	public SimpleObjectController(View view) {
+		super(view);
 		this.model = new SimpleObject();
 	}
 	
@@ -19,9 +16,8 @@ public class SimpleObjectController implements IController{
 		
 		try {
 			ObjectSender.getInstance().send(model);
-		}catch(IOException e) {
-			
-			e.getStackTrace();
+		}catch(Exception e) {
+			throw new RuntimeException();
 		}
 		
 	}

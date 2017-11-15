@@ -21,7 +21,9 @@ public class InspectedObject extends InspectedPrimitive{
 				iField.setValue(val);
 				addMember(iField);
 			}
-			catch(Exception e) {}
+			catch(Exception e) {
+				throw new RuntimeException();
+			}
 		}
 	}
 	
@@ -40,7 +42,7 @@ public class InspectedObject extends InspectedPrimitive{
 	@Override
 	public String inspect() {
 		String result = "Class : " + getObject().getClass().getName();
-		if(members.size() > 0) result +="\nMembers : " + inspectMembers();
+		if(members.size() > 0) result +="\nMembers : " + StringExtensions.indent(inspectMembers());
 		
 		return result; 
 	}

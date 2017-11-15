@@ -1,13 +1,11 @@
 import java.util.List;
 
-public class ReferenceObjectController implements IController{
+public class ReferenceObjectController extends Controller{
 
-	private ObjectView view;
 	private ReferenceObject model;
 	
-	public ReferenceObjectController(ObjectView view) {
-		this.view = view;
-		this.view.addListener(this);
+	public ReferenceObjectController(View view) {
+		super(view);
 		this.model = new ReferenceObject();
 	}
 	
