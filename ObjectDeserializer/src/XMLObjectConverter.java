@@ -53,7 +53,7 @@ public class XMLObjectConverter extends XMLConverter{
 					f.set(obj, XMLConverter.convert(value, getRoot()));
 				}
 			}catch(Exception e){
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 		}
 	}
