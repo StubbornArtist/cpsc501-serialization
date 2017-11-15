@@ -3,28 +3,20 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReferenceObjectView extends ObjectView{
-		
-	public void requestLength() {
-		System.out.println("int length : ");
-	}
+	
 	
 	public void requestSimpleObj() {
 		System.out.println("SimpleObject simpleObject: ");
 	}
 	
-	public void requestSimpleObjNum() {
+	public void requestNum() {
 		System.out.println("int num : ");
 	}
 	
-	public void requestSimpleObjLetter() {
+	public void requestLetter() {
 		System.out.println("char letter : ");
 	}
-	
-	
-	public void requestMember(int index) {
-		System.out.println( index + " : SimpleObject" );
-	}
-	
+			
 	@Override
 	public String getName() {
 		return "ReferenceObject";
@@ -34,23 +26,12 @@ public class ReferenceObjectView extends ObjectView{
 	public void run() {
 		
 		List<String> args = new ArrayList<String>();
-		
-		requestLength();
-		Integer len = new Integer(getLine());
 		requestSimpleObj();
-		requestSimpleObjNum();
+		requestNum();
 		args.add(getLine());
-		requestSimpleObjLetter();
+		requestLetter();
 		args.add(getLine());
-		
-		for(int i = 0; i < len; i++) {
-			requestMember(i);
-			requestSimpleObjNum();
-			args.add(getLine());
-			requestSimpleObjLetter();
-			args.add(getLine());
-		}
-		
+	
 		notifyController(args);
 	}
 

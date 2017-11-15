@@ -19,14 +19,7 @@ public class ReferenceObjectController implements IController{
 		simpleObject.setLetter(input.remove(0).charAt(0));
 		
 		model.setSimpleObject(simpleObject);
-		
-		for(int i = 0; i < input.size() - 1; i++) {
-			SimpleObject member = new SimpleObject();
-			member.setNum(new Integer(input.get(i)));
-			member.setLetter(input.get(i + 1).charAt(0));
-			model.addSimpleObject(member);
-		}
-		
+				
 		try {
 			ObjectSender.getInstance().send(model);
 		}catch(Exception e) {}

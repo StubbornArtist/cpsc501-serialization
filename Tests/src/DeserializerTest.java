@@ -144,23 +144,7 @@ public class DeserializerTest {
 			fail(e.getMessage());
 		}
 	}
-	
-	@Test
-	public void testClassWithCircularReference() {
-		String root = "<object id =\"0\" class=\"CircularRefClass\">\r\n"
-				+ "<field declaringclass=\"CircularRefClass\" name=\"ref\">\r\n"
-				+ "<reference>0</reference>\r\n"
-				+ "</field>"
-				+ "</object>\r\n";
-				
-		try {
-			Object result = deserialize(root);
-			assertEquals(result, new CircularRefClass());
-		}catch(Exception e) {
-			fail(e.getMessage());
-		}
-	}
-	
+		
 	@Test
 	public void testClassWithClassField() {
 		String root = "<object id =\"0\" class=\"OneClassFieldClass\">\r\n"
@@ -176,6 +160,23 @@ public class DeserializerTest {
 			assertEquals(result, new OneClassFieldClass());
 		}catch(Exception e) {
 			fail(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testCircularReference() {
+		String root = "<object id =\"0\" class=\"[LEmptyClass;\" length =\"2\">\r\n"
+				+ "<reference>1</reference>\r\n"
+				+ "<reference>1</reference>\r\n"
+				+ "</object>\r\n"
+				+ "<object id=\"1\" class=\"EmptyClass\">\r\n"
+				+ "</object>\r\n";
+		try {
+			Object result = deserialize(root);
+			assertEquals(result.getClass(), EmptyClass[].class);
+			assertSame(((EmptyClass[])result)[0], ((EmptyClass[])result)[1]);
+		}catch(Exception e) {
+			fail();
 		}
 	}
 	
